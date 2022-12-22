@@ -1,9 +1,14 @@
 const numberInput = document.getElementById("number");
-const textInput = document.getElementById("msg");
-const button = document.getElementById("button");
+textInput = document.getElementById("msg");
+button = document.getElementById("button");
 const response = document.querySelector(".response");
 
 button.addEventListener("click", send, false);
+
+const socket = io();
+socket.on("smsStatus", function (data) {
+  response.innerHTML = "<h5>Text message sent to " + data.number + "</h5>";
+});
 
 function send() {
   // for non numeric characters
